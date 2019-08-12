@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fjspitz_call-center-example&metric=alert_status)](https://sonarcloud.io/dashboard?id=fjspitz_call-center-example)
+
 # Call Center Example
 
 POC del uso del framework Executor Service de Java
