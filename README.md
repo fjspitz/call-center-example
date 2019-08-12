@@ -10,21 +10,21 @@ Esto implica la ejecución con concurrencia de múltiples hilos de ejecución de
 
 Desde el aspecto técnico, se puede pensar el planteo como un pool de workers fijo a la espera de trabajo por realizar. En este caso, el trabajo es atender una llamada telefónica que puede durar entre 5 y 10 segundos.
 
-El ser necesaria la atención de los llamados entrantes de manera simultánea, se debe implementar un esquema de hilos para permitir la concurrencia de múltiples llamados.
+Al ser necesaria la atención de los llamados entrantes de manera simultánea, se debe implementar un esquema de hilos para permitir la concurrencia de múltiples llamados.
 
 Una manera de resolver esto, es utilizar el `Executor Framework`, basado en la interfaz y subinterfaz `Executor` y `ExecutorService`, respectivamente, y la clase que implementa ambas interfaces, **`ThreadPoolExecutor`** del paquete `java.util.concurrent`.
 
 Esta clase permite definir diferentes implementaciones de pool de Threads.
 
-La clase `Dispatcher` será la responsable de implementar el llamado al método `dispatchCall`, que deriva a un agente la atención de una llamada entrante.
+La clase `Dispatcher` será la responsable de implementar el llamado al método `dispatchCall`, que deriva a un empleado la atención de una llamada entrante.
 
 Al momento de construir la clase `Dispatcher`, ésta debe ser inicializada con un parámetro, que es una implementación de la interfaz `Queue`.
 
 Existen diferentes implementaciones. La que voy a utilizar es `PriorityQueue`, ya que ésta variante me permite aprovechar el ordenamiento natural de objetos que implementen la interfaz *Comparable*. 
 
-Esto me permite definir de que manera se van “des-encolando” los elementos de la cola, en este caso, los agentes que responden a los llamados telefónicos. 
+Esto me permite definir de que manera se van “des-encolando” los elementos de la cola, en este caso, los empleados que responden a los llamados telefónicos. 
 
-El orden en que dichos agentes van saliendo de la cola para atender los llamados, se concreta a partir de la comparación de la propiedad `role` de cada agente, siendo el orden de prioridad:  primero los operadores, luego los supervisores y por último los directores.
+El orden en que los empleados van saliendo de la cola para atender los llamados, se concreta a partir de la comparación de la propiedad `role` de cada uno, siendo el orden de prioridad para atender un llamado: primero los operadores, luego los supervisores y por último los directores.
 
 `Employee` es la clase que representa a un empleado, siendo que el mismo puede tener un rol, que es un `Enumeration`, para representar los roles de **Operador**, **Supervisor** o **Director**.
 
